@@ -1,0 +1,36 @@
+<div class="main-container">
+
+    <div class="form-container">
+        <h1>LogIn</h1>
+        <h3>Unlock your potential.</h3>
+        <form [formGroup] = "LoginPage" (ngSubmit) = "onLogin()">
+
+            <mat-form-field>
+                <mat-label>Enter your email</mat-label>
+                <input type="email"
+                matInput
+                placeholder ="yey@example.com"
+                formControlName ="username"
+                required
+                />
+                <mat-error *ngIf="username?.hasError('required')">Username is Required</mat-error>
+                <mat-error *ngIf="username?.hasError('email')">Username must be an email</mat-error>
+            </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter your Password</mat-label>
+            <input type="password"
+            matInput
+            placeholder ="@Example124"
+            formControlName ="password"
+            />
+
+            <mat-error *ngIf ="password?.hasError('required')">Password is Required.</mat-error>
+        </mat-form-field>
+
+        <button mat-stroked-button [disabled]="LoginPage.invalid">Login</button>
+
+        </form>
+
+    </div>
+
+</div>
