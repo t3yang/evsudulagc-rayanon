@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { RoutesModule } from './routes.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Pages/login/login.component';
+import { DetailComponent } from './Pages/detail/detail.component';
 
 
 
 @NgModule({
-  declarations: [ LoginComponent ],
+  declarations: [ LoginComponent, DetailComponent ],
   imports: [
     CommonModule,
     MaterialModule,
