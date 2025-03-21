@@ -26,13 +26,33 @@ export class LoginComponent {
     return this.LoginPage.get('password');
   }
 
-  onLogin(){
-    const { username, password } = this.LoginPage.value;
+  errormsg: string = '';
 
-    if(this.userService.validateLogin(username, password)){
-      this.router.navigate(['/main/detail']);
-    } else {
-      console.log('error');
-    }
+  onLogin(){
+    this.userService.userLogin(this.LoginPage.value).subscribe({
+      next: (data) => {
+        if (data?.user) {
+          this.router.navigate(['main/dashboard']);
+          this.errormsg = '';
+        }
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          this.errormsg = "Username and password don't match."
+        } else if (err.status === 404) {
+          this.errormsg = "User not found."
+        }
+         else {
+          this.errormsg = 'Something went wrong. Please try again.';
+        }
+      }
+    });
+    // const { username, password } = this.LoginPage.value;
+
+    // if(this.userService.validateLogin(username, password)){
+    //   this.router.navigate(['/main/detail']);
+    // } else {
+    //   console.log('error');
+    // }
   }
 }

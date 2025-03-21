@@ -3,7 +3,8 @@
     <div class="form-container">
         <h1>LogIn</h1>
         <h3>Unlock your potential.</h3>
-        <form [formGroup] = "LoginPage" (ngSubmit) = "onLogin()">
+        <p *ngIf="errormsg" class="errormsg">{{errormsg}}</p>
+        <form [formGroup] = "LoginPage"  (ngSubmit)="onLogin()">
 
             <mat-form-field>
                 <mat-label>Enter your email</mat-label>
